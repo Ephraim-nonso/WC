@@ -8,8 +8,8 @@ const BrandComp = () => {
     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
       <Image
         src={mainLogo}
-        width={320}
-        height={200}
+        width={560}
+        height={300}
         alt="Weird creatures"
         className=""
       />
