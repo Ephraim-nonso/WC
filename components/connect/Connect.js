@@ -18,23 +18,28 @@ const Connect = () => {
 
   const connectWallet = async () => {
     console.log("workimg");
-    // const instance = await web3Modal.connect();
-
-    // const provider = new ethers.providers.Web3Provider(instance);
-    // const signer = provider.getSigner();
   };
 
   return (
     <div className="text-center">
-      <p className="mt-4 font-bold text-4xl text-[#413738]">0/6666</p>
+      <p
+        className="mt-4 font-bold text-5xl text-[#413738]"
+        style={{ fontFamily: "Bahnschrift" }}
+      >
+        0/6666
+      </p>
       <button
         type="button"
-        className="bg-[#413738] px-6 rounded-full py-2 uppercase text-[#FEE0DF] mt-4"
+        className="bg-[#413738] px-6 rounded-full py-2 uppercase text-[#FEE0DF] mt-4 text-xl"
         onClick={connectWallet}
+        style={{ fontFamily: "Bahnschrift" }}
       >
         Connect
       </button>
-      <p className="uppercase my-4 text-[#413738] font-bold text-xs">
+      <p
+        className="uppercase my-4 text-[#413738] font-bold text-sm"
+        style={{ fontFamily: "Bahnschrift" }}
+      >
         First 666 free - 0.005 eth - max 5 per wallet.
       </p>
     </div>

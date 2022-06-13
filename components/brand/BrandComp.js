@@ -9,7 +9,7 @@ const BrandComp = () => {
       <Image
         src={mainLogo}
         width={250}
-        height={200}
+        height={140}
         alt="Weird creatures"
         className=""
       />
