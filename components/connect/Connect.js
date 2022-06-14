@@ -38,19 +38,19 @@ const Connect = () => {
       >
         0/6666
       </p>
-      <button
+      <div
         type="button"
-        className="bg-[#413738] px-6 rounded-full py-2 uppercase text-[#FEE0DF] mt-4 text-xl"
+        className="bg-[#413738] px-6 rounded-full py-2 uppercase text-[#FEE0DF] m-auto sm:m-4 text-xl w-48 sm:w-full"
         onClick={() => connect()}
         style={{ fontFamily: "Bahnschrift" }}
       >
         {!!data?.address ? formatAddress(data?.address) : "Connect"}
-      </button>
+      </div>
 
       <div>
         {!!data?.address ? (
           <p
-            className="uppercase my-4 text-[#413738] font-bold text-sm cursor-pointer"
+            className="text-[#413738] px-6 rounded-full py-2 uppercase bg-[#FEE0DF] m-auto mt-4 sm:m-4 w-48 sm:w-full text-xl border-2 cursor-pointer border-solid border-[#413738]"
             style={{ fontFamily: "Bahnschrift" }}
             onClick={() => disconnect()}
           >
