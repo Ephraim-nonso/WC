@@ -2,17 +2,19 @@ import React, { useState, useEffect } from "react";
 import Web3Modal from "web3modal";
 import { providerOptions } from "../connectors/Connector";
 import { ethers } from "ethers";
-
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
 import { formatAddress } from "../../utils/helper";
-const Connect = () => {
-  // const [provider, setProvider] = useState();
-  // const [library, setLibrary] = useState();
-  // const [account, setAccount] = useState();
-  // const [network, setNetwork] = useState();
-  // const [chainId, setChainId] = useState();
+import { useContract } from "wagmi";
 
+const Connect = () => {
+  // Use wagmi hook to
+  // const contract = useContract({
+  //   addressOrName: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
+  //   contractInterface: ensRegistryABI,
+  // });
+
+  // Get data from wagmi hooks
   const { data } = useAccount();
   const { connect } = useConnect({
     connector: new InjectedConnector(),
@@ -20,37 +22,41 @@ const Connect = () => {
 
   const { disconnect } = useDisconnect();
 
-  // const web3Modal = new Web3Modal({
-  //   network: "mainnet", // optional
-  //   cacheProvider: true, // optional
-  //   providerOptions, // required
-  // });
-
-  // const connectWallet = async () => {
-  //   console.log("workimg");
-  // };
-
   return (
     <div className="text-center">
-      <p
-        className="mt-4 font-bold text-5xl text-[#413738]"
-        style={{ fontFamily: "Bahnschrift" }}
-      >
-        0/6666
-      </p>
-      <div
-        type="button"
-        className="bg-[#413738] px-6 rounded-full py-2 uppercase text-[#FEE0DF] m-auto sm:m-4 text-xl w-48 sm:w-full"
-        onClick={() => connect()}
-        style={{ fontFamily: "Bahnschrift" }}
-      >
-        {!!data?.address ? formatAddress(data?.address) : "Connect"}
+      <div>
+        <p
+          className="mt-4 font-bold text-5xl text-[#413738]"
+          style={{ fontFamily: "Bahnschrift" }}
+        >
+          0/6666
+        </p>
+      </div>
+
+      <div>
+        <div
+          className="bg-[#413738] px-6 cursor-pointer rounded-full py-2 uppercase text-[#FEE0DF] m-auto sm:m-1 text-xl w-48 sm:w-full"
+          onClick={() => connect()}
+          style={{ fontFamily: "Bahnschrift" }}
+        >
+          <p>
+            {!!data?.address ? `${formatAddress(data?.address)}` : "Connect"}
+          </p>
+        </div>
       </div>
 
       <div>
         {!!data?.address ? (
           <p
-            className="text-[#413738] px-6 rounded-full py-2 uppercase bg-[#FEE0DF] m-auto mt-4 sm:m-4 w-48 sm:w-full text-xl border-2 cursor-pointer border-solid border-[#413738]"
+            className="text-[#413738] px-6 cursor-pointer rounded-full py-2 uppercase bg-[#FEE0DF] m-auto mt-1 sm:m-1 w-48 sm:w-full text-xl border-2 cursor-pointer border-solid border-[#413738]"
+            style={{ fontFamily: "Bahnschrift" }}
+          >
+            Mint
+          </p>
+        ) : null}
+        {!!data?.address ? (
+          <p
+            className="text-[#413738] px-6 cursor-pointer rounded-full py-2 uppercase bg-[#FEE0DF] m-auto mt-1 sm:m-1 w-48 sm:w-full text-xl border-2 cursor-pointer border-solid border-[#413738]"
             style={{ fontFamily: "Bahnschrift" }}
             onClick={() => disconnect()}
           >

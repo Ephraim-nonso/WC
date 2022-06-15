@@ -20,7 +20,7 @@ const BrandComp = () => {
         className="block sm:hidden m-auto w-full text-center font-bold"
         style={{ fontFamily: "Bahnschrift" }}
       >
-        <h1 className="text-5xl">Weird Creatures</h1>
+        <h1 className="text-2xl">Weird Creatures</h1>
       </div>
     </div>
   );
