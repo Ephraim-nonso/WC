@@ -53,7 +53,7 @@ const Connect = () => {
 
       <div>
         <div
-          className="bg-[#413738] px-6 cursor-pointer rounded-full py-2 uppercase text-[#FEE0DF] m-auto  text-xl w-48 sm:w-full"
+          className="bg-[#413738] px-6 cursor-not-allowed rounded-full py-2 uppercase text-[#FEE0DF] m-auto  text-xl w-48 sm:w-full"
           onClick={() => {
             // connect();
           }}
