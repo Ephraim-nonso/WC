@@ -28,7 +28,7 @@ const Connect = () => {
     // console.log(callFunc);
 
     // NFT calculation.
-    const single = 0.02;
+    const single = 0.015;
     const toBePaid = JSON.stringify(single);
     const costOfNFT = ethers.utils.parseEther(toBePaid);
     console.log(toBePaid, costOfNFT);
