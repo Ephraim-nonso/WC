@@ -19,7 +19,10 @@ const Navbar = () => {
         </a>
       </div>
       <div className="flex-1">
-        <a href="https://testnets.opensea.io/collection/weirdcreatures-v4">
+        <a
+          href=""
+          // href="https://testnets.opensea.io/collection/weirdcreatures-v4"
+        >
           <Image
             alt="opensea"
             src={openseaLogo}
@@ -30,7 +33,10 @@ const Navbar = () => {
         </a>
       </div>
       <div className="flex-1">
-        <a href="https://rinkeby.etherscan.io/address/0x11ecef94728fb5048c1db845f34be160ed5aae51">
+        <a
+          href=""
+          // href="https://rinkeby.etherscan.io/address/0x11ecef94728fb5048c1db845f34be160ed5aae51"
+        >
           <Image
             alt="etherscan"
             src={etherscanLogo}

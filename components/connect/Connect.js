@@ -9,42 +9,27 @@ import contractABI from "../../utils/ab.json";
 
 const Connect = () => {
   const provider = useProvider();
-  const signer = useSigner();
+  const { data: signer } = useSigner();
 
   // Use wagmi hook to
   const contract = useContract({
     addressOrName: "0x11eCEf94728Fb5048c1dB845f34Be160Ed5AaE51",
     contractInterface: contractABI,
-    signerOrProvider: provider,
+    signerOrProvider: signer,
   });
 
+  let totalSupply;
+
   const handleMint = async () => {
-    // const single = "0.02";
-
-    // const mintContract = contract.connect(provider);
-    // const callFunc = mintContract.mint("1", {
-    //   value: ethers.utils.parseEther(single),
-    // });
-    // console.log(callFunc);
-
     // NFT calculation.
-    const single = 0.015;
+    const single = 0.005;
     const toBePaid = JSON.stringify(single);
     const costOfNFT = ethers.utils.parseEther(toBePaid);
-    console.log(toBePaid, costOfNFT);
 
-    // Contract interaction.
-    const myProvider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = myProvider.getSigner();
-    const contractInstance = new Contract(
-      "0x11eCEf94728Fb5048c1dB845f34Be160Ed5AaE51",
-      contractABI,
-      signer
-    );
-    const mint = await contractInstance.mint("1", {
+    const mint = await contract.mint("1", {
       value: costOfNFT,
     });
-    console.log(mint);
+    console.log(await mint.wait());
   };
 
   // Get data from wagmi hooks
@@ -69,7 +54,9 @@ const Connect = () => {
       <div>
         <div
           className="bg-[#413738] px-6 cursor-pointer rounded-full py-2 uppercase text-[#FEE0DF] m-auto  text-xl w-48 sm:w-full"
-          onClick={() => connect()}
+          onClick={() => {
+            // connect();
+          }}
           style={{ fontFamily: "Bahnschrift" }}
         >
           <p>
