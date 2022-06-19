@@ -1,18 +1,51 @@
 import React, { useState, useEffect } from "react";
 import Web3Modal from "web3modal";
-import { providerOptions } from "../connectors/Connector";
-import { ethers } from "ethers";
+import { ethers, Contract } from "ethers";
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
 import { formatAddress } from "../../utils/helper";
-import { useContract } from "wagmi";
+import { useContract, useProvider, useSigner } from "wagmi";
+import contractABI from "../../utils/ab.json";
 
 const Connect = () => {
+  const provider = useProvider();
+  const signer = useSigner();
+
   // Use wagmi hook to
-  // const contract = useContract({
-  //   addressOrName: "0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e",
-  //   contractInterface: ensRegistryABI,
-  // });
+  const contract = useContract({
+    addressOrName: "0x11eCEf94728Fb5048c1dB845f34Be160Ed5AaE51",
+    contractInterface: contractABI,
+    signerOrProvider: provider,
+  });
+
+  const handleMint = async () => {
+    // const single = "0.02";
+
+    // const mintContract = contract.connect(provider);
+    // const callFunc = mintContract.mint("1", {
+    //   value: ethers.utils.parseEther(single),
+    // });
+    // console.log(callFunc);
+
+    // NFT calculation.
+    const single = 0.02;
+    const toBePaid = JSON.stringify(single);
+    const costOfNFT = ethers.utils.parseEther(toBePaid);
+    console.log(toBePaid, costOfNFT);
+
+    // Contract interaction.
+    const myProvider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = myProvider.getSigner();
+    const contractInstance = new Contract(
+      "0x11eCEf94728Fb5048c1dB845f34Be160Ed5AaE51",
+      contractABI,
+      signer
+    );
+    const mint = await contractInstance.mint("1", {
+      value: costOfNFT,
+    });
+    console.log(mint);
+  };
 
   // Get data from wagmi hooks
   const { data } = useAccount();
@@ -35,7 +68,7 @@ const Connect = () => {
 
       <div>
         <div
-          className="bg-[#413738] px-6 cursor-pointer rounded-full py-2 uppercase text-[#FEE0DF] m-auto sm:m-1 text-xl w-48 sm:w-full"
+          className="bg-[#413738] px-6 cursor-pointer rounded-full py-2 uppercase text-[#FEE0DF] m-auto  text-xl w-48 sm:w-full"
           onClick={() => connect()}
           style={{ fontFamily: "Bahnschrift" }}
         >
@@ -50,6 +83,7 @@ const Connect = () => {
           <p
             className="text-[#413738] px-6 cursor-pointer rounded-full py-2 uppercase bg-[#FEE0DF] m-auto mt-1 sm:m-1 w-48 sm:w-full text-xl border-2 cursor-pointer border-solid border-[#413738]"
             style={{ fontFamily: "Bahnschrift" }}
+            onClick={handleMint}
           >
             Mint
           </p>
