@@ -60,7 +60,9 @@ const Connect = () => {
           style={{ fontFamily: "Bahnschrift" }}
         >
           <p>
-            {!!data?.address ? `${formatAddress(data?.address)}` : "Connect"}
+            {!!data?.address
+              ? `${formatAddress(data?.address)}`
+              : "NOT LIVE YET"}
           </p>
         </div>
       </div>
