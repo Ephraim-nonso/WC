@@ -1,10 +1,7 @@
-export const formatAddress = (address) => {
-  return `${address.slice(0, 10)}...${address.slice(
-    address.length - 4,
-    address.length
-  )}`;
-};
-export const whitelist = [
+const MerkleTree = require("merkletreejs");
+const keccak256 = require("keccak256");
+
+const whitelist = [
   "0xC635dC7e540d384876aC4D6178D9971241b8383B",
   "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
   "0x15d34AAf54267DB7D7c367839AAf71A00a2C6A65",
@@ -24,3 +21,21 @@ export const whitelist = [
   "0xdD2FD4581271e230360230F9337D5c0430Bf44C0",
   "0xf18be8A5FcBD320fDe04843954c1c1A155b9Ae2b",
 ];
+
+// Generate a proof
+let leaves = whitelist.map((addr) => keccak256(addr));
+
+let merkleTree = new MerkleTree(leaves, keccak256, {
+  sortPairs: true,
+  sortLeaves: true,
+});
+let rootHash = merkleTree.getRoot().toString("hex");
+// console.log(rootHash);
+
+let address = whitelist.indexOf(data?.address);
+// let hashedAddress = keccak256(address);
+let proof = merkleTree.getHexProof(address);
+console.log(proof);
+
+let v = merkleTree.verify(proof, address, rootHash);
+console.log(v); // returns true
