@@ -453,6 +453,7 @@ const Connect = () => {
     const costOfNFT = ethers.utils.parseEther(toBePaid);
 
     const mint = await contract.presaleMint("1", {
+      value: costOfNFT,
       gasLimit: "300000",
     });
     console.log(await mint.wait());
