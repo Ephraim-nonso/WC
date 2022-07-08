@@ -417,7 +417,6 @@ const Connect = () => {
 
   // handleTotalSupply();
   const handleMint = async () => {
-    handleTotalSupply();
     const leafNodes = whitelist.map((addr) => keccak256(addr));
     const merkleTree = new MerkleTree(leafNodes, keccak256, {
       sortPairs: true,
@@ -445,6 +444,8 @@ const Connect = () => {
     });
     console.log(await mint.wait());
     // console.log(contract);
+
+    handleTotalSupply();
   };
 
   // Get data from wagmi hooks
