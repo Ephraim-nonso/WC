@@ -407,7 +407,17 @@ const Connect = () => {
     "0xf18be8A5FcBD320fDe04843954c1c1A155b9Ae2b",
   ];
 
+  const [value, setValue] = useState(0);
+
+  const handleTotalSupply = async () => {
+    const totalSupply = await contract.totalSupply();
+    setValue(ethers.utils.formatUnits(totalSupply, 0));
+    console.log(ethers.utils.formatUnits(totalSupply, 0));
+  };
+
+  // handleTotalSupply();
   const handleMint = async () => {
+    handleTotalSupply();
     const leafNodes = whitelist.map((addr) => keccak256(addr));
     const merkleTree = new MerkleTree(leafNodes, keccak256, {
       sortPairs: true,
@@ -452,7 +462,7 @@ const Connect = () => {
           className="mt-4 font-bold text-5xl text-[#413738]"
           style={{ fontFamily: "Bahnschrift" }}
         >
-          0/6666
+          {value} /6666
         </p>
       </div>
 
