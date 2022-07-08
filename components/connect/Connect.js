@@ -19,7 +19,7 @@ const Connect = () => {
 
   // Use wagmi hook to
   const contract = useContract({
-    addressOrName: "0x73A8f32691697bbD584CA9b933b09E0bdFEBc33f",
+    addressOrName: "0xcB4a417974D3C2Ab34e46c93C0FfC6aC11332465",
     contractInterface: contractABI,
     signerOrProvider: signer,
   });
