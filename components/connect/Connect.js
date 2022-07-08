@@ -23,6 +23,12 @@ const Connect = () => {
     contractInterface: contractABI,
     signerOrProvider: signer,
   });
+
+  const contractTotal = useContract({
+    addressOrName: "0xcB4a417974D3C2Ab34e46c93C0FfC6aC11332465",
+    contractInterface: contractABI,
+    signerOrProvider: provider,
+  });
   let whitelist = [
     "0x37060B9c4219CF5F7FE68f9c7aC24715593c9626",
     "0x5C6AE017A1811AE67F6AbA6a07009D173CCCcdB7",
@@ -415,8 +421,15 @@ const Connect = () => {
     console.log(ethers.utils.formatUnits(totalSupply, 0));
   };
 
+  useEffect(() => {
+    console.log("executed only once!");
+    // handleTotalSupply();
+  }, [""]);
+
   // handleTotalSupply();
   const handleMint = async () => {
+    handleTotalSupply();
+
     const leafNodes = whitelist.map((addr) => keccak256(addr));
     const merkleTree = new MerkleTree(leafNodes, keccak256, {
       sortPairs: true,
@@ -439,7 +452,7 @@ const Connect = () => {
     const toBePaid = JSON.stringify(single);
     const costOfNFT = ethers.utils.parseEther(toBePaid);
 
-    const mint = await contract.whitelistMint("1", proof, {
+    const mint = await contract.presaleMint("1", proof, {
       gasLimit: "300000",
     });
     console.log(await mint.wait());

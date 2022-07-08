@@ -138,6 +138,13 @@
     "type": "event"
   },
   {
+    "inputs": [],
+    "name": "_cost_",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       { "internalType": "address", "name": "to", "type": "address" },
       { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
@@ -260,6 +267,15 @@
     "type": "function"
   },
   {
+    "inputs": [
+      { "internalType": "uint256", "name": "_mintAmount", "type": "uint256" }
+    ],
+    "name": "presaleMint",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
     "inputs": [],
     "name": "renounceOwnership",
     "outputs": [],
@@ -353,6 +369,15 @@
   {
     "inputs": [{ "internalType": "bool", "name": "_state", "type": "bool" }],
     "name": "setPaused",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_cost", "type": "uint256" }
+    ],
+    "name": "setPresaleCost",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
