@@ -435,7 +435,7 @@ const Connect = () => {
   };
 
   useEffect(() => {
-    console.log("executed only once!");
+    // console.log("executed only once!");
     getTotalSupply();
     // handleTotalSupply();
   }, [""]);
@@ -495,19 +495,19 @@ const Connect = () => {
           className="mt-4 font-bold text-5xl text-[#413738]"
           style={{ fontFamily: "Bahnschrift" }}
         >
-          {/* {value} /6666 */}0 /6666
+          {value} /6666
         </p>
       </div>
 
       <div>
-        <div>
-          <p
-            className="bg-[#413738] px-6 cursor-not-allowed rounded-full py-2 uppercase text-[#FEE0DF] m-auto  text-xl w-48 sm:w-full"
-            onClick={() => {
-              // connect();
-            }}
-            style={{ fontFamily: "Bahnschrift" }}
-          >
+        <div
+          className="bg-[#413738] px-6 cursor-not-allowed rounded-full py-2 uppercase text-[#FEE0DF] m-auto  text-xl w-48 sm:w-full"
+          onClick={() => {
+            // connect();
+          }}
+          style={{ fontFamily: "Bahnschrift" }}
+        >
+          <p>
             {!!data?.address
               ? `${formatAddress(data?.address)}`
               : "NOT LIVE YET"}
