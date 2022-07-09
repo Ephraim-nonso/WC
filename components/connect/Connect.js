@@ -467,6 +467,7 @@ const Connect = () => {
     // const costOfNFT = ethers.utils.parseEther(toBePaid);
 
     const mint = await contract.whitelistMint("1", proof, {
+      value: "0",
       gasLimit: "300000",
     });
     // const mint = await contract.presaleMint("1", {
@@ -503,14 +504,14 @@ const Connect = () => {
         <div
           className="bg-[#413738] px-6 cursor-not-allowed rounded-full py-2 uppercase text-[#FEE0DF] m-auto  text-xl w-48 sm:w-full"
           onClick={() => {
-            // connect();
+            connect();
           }}
           style={{ fontFamily: "Bahnschrift" }}
         >
           <p>
             {!!data?.address
               ? `${formatAddress(data?.address)}`
-              : "NOT LIVE YET"}
+              : "CONNECT WALLET"}
           </p>
         </div>
       </div>
