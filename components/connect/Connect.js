@@ -466,14 +466,14 @@ const Connect = () => {
     // const toBePaid = JSON.stringify(single);
     // const costOfNFT = ethers.utils.parseEther(toBePaid);
 
-    const mint = await contract.whitelistMint("1", proof, {
-      value: "0",
-      gasLimit: "300000",
-    });
-    // const mint = await contract.presaleMint("1", {
-    //   value: 0,
+    // const mint = await contract.whitelistMint("1", proof, {
+    //   value: "0",
     //   gasLimit: "300000",
     // });
+    const mint = await contract.presaleMint("1", {
+      value: 0,
+      gasLimit: "300000",
+    });
     // const mint = await contract.mint("1", {
     //   value: cost,
     //   gasLimit: "300000",
