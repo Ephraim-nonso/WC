@@ -409,6 +409,7 @@ const Connect = () => {
   ];
 
   const [value, setValue] = useState(0);
+  const [cost, setCost] = useState(0);
 
   const getTotalSupply = async () => {
     const customprovider = new ethers.providers.JsonRpcProvider(
@@ -420,6 +421,11 @@ const Connect = () => {
     const newValue = await contractInstance.totalSupply();
 
     setValue(ethers.utils.formatUnits(newValue, 0));
+
+    const single = await contractInstance.cost();
+    const conv = ethers.utils.formatUnits(single, 0);
+    setCost(Number(conv));
+    console.log(cost);
   };
 
   const handleTotalSupply = async () => {
@@ -442,27 +448,29 @@ const Connect = () => {
     });
     const rootHash = "0x" + merkleTree.getRoot().toString("hex");
 
-    console.log(rootHash);
+    // console.log(rootHash);
 
     // let address = whitelist.indexOf(data?.address);
     let address = whitelist[whitelist.indexOf(data?.address)];
     let hashedAddress = keccak256(address);
     let proof = merkleTree.getHexProof(hashedAddress);
-    console.log(proof);
+    // console.log(proof);
 
     let v = merkleTree.verify(proof, hashedAddress, rootHash);
-    console.log(v); // returns true
+    // console.log(v); // returns true
 
     // NFT calculation.
-    const single = 0.005;
-    const toBePaid = JSON.stringify(single);
-    const costOfNFT = ethers.utils.parseEther(toBePaid);
+    // const single = await contract.cost();
+    // console.log(single);
+    // const single = 0.005;
+    // const toBePaid = JSON.stringify(single);
+    // const costOfNFT = ethers.utils.parseEther(toBePaid);
 
-    const mint = await contract.presaleMint("1", {
-      value: 0,
+    const mint = await contract.mint("1", {
+      value: cost,
       gasLimit: "300000",
     });
-    console.log(await mint.wait());
+    // console.log(await mint.wait());
   };
 
   // Get data from wagmi hooks
