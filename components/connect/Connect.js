@@ -544,7 +544,7 @@ const Connect = () => {
 
         {!!data?.address ? (
           <p
-            className="uppercase my-4 text-[#FF0000]"
+            className="uppercase my-2  text-[#FF0000]"
             style={{ fontSize: "10px" }}
           >
             Ensure to connect to Ethereum Mainnet Network
