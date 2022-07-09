@@ -1,5 +1,5 @@
 export const formatAddress = (address) => {
-  return `${address.slice(0, 10)}...${address.slice(
+  return `${address.slice(0, 7)}...${address.slice(
     address.length - 4,
     address.length
   )}`;

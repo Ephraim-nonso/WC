@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <div className="w-36 py-7 flex justify-between align-center mx-auto">
       <div className="flex-1">
-        <a href="https://twitter.com/_WeirdCreatures">
+        <a href="https://twitter.com/_WeirdCreatures" target="_blank">
           <Image
             alt="twitter"
             src={twitterLogo}
@@ -20,8 +20,8 @@ const Navbar = () => {
       </div>
       <div className="flex-1">
         <a
-          href=""
-          // href="https://testnets.opensea.io/collection/weirdcreatures-v4"
+          href="https://opensea.io/collection/weirdcreaturesofficial"
+          target="_blank"
         >
           <Image
             alt="opensea"
@@ -34,8 +34,8 @@ const Navbar = () => {
       </div>
       <div className="flex-1">
         <a
-          href=""
-          // href="https://rinkeby.etherscan.io/address/0x11ecef94728fb5048c1db845f34be160ed5aae51"
+          href="https://etherscan.io/address/0x250e674EC63Df4273c493c419D9f1e44035CBdAC"
+          target="_blank"
         >
           <Image
             alt="etherscan"

@@ -19,7 +19,7 @@ const Connect = () => {
 
   // Use wagmi hook to
   const contract = useContract({
-    addressOrName: "0xcB4a417974D3C2Ab34e46c93C0FfC6aC11332465",
+    addressOrName: "0x250e674EC63Df4273c493c419D9f1e44035CBdAC",
     contractInterface: contractABI,
     signerOrProvider: signer,
   });
@@ -413,9 +413,9 @@ const Connect = () => {
 
   const getTotalSupply = async () => {
     const customprovider = new ethers.providers.JsonRpcProvider(
-      "https://rinkeby.infura.io/v3/80997b0581a04d009149b879ec3c4e5f"
+      "https://mainnet.infura.io/v3/80997b0581a04d009149b879ec3c4e5f"
     );
-    const addr = "0xcB4a417974D3C2Ab34e46c93C0FfC6aC11332465";
+    const addr = "0x250e674EC63Df4273c493c419D9f1e44035CBdAC";
     const contractInstance = new Contract(addr, contractABI, customprovider);
 
     const newValue = await contractInstance.totalSupply();
@@ -466,11 +466,18 @@ const Connect = () => {
     // const toBePaid = JSON.stringify(single);
     // const costOfNFT = ethers.utils.parseEther(toBePaid);
 
-    const mint = await contract.mint("1", {
-      value: cost,
+    const mint = await contract.whitelistMint("1", proof, {
       gasLimit: "300000",
     });
-    // console.log(await mint.wait());
+    // const mint = await contract.presaleMint("1", {
+    //   value: 0,
+    //   gasLimit: "300000",
+    // });
+    // const mint = await contract.mint("1", {
+    //   value: cost,
+    //   gasLimit: "300000",
+    // });
+    console.log(await mint.wait());
   };
 
   // Get data from wagmi hooks
@@ -488,19 +495,19 @@ const Connect = () => {
           className="mt-4 font-bold text-5xl text-[#413738]"
           style={{ fontFamily: "Bahnschrift" }}
         >
-          {value} /6666
+          {/* {value} /6666 */}0 /6666
         </p>
       </div>
 
       <div>
-        <div
-          className="bg-[#413738] px-6 cursor-not-allowed rounded-full py-2 uppercase text-[#FEE0DF] m-auto  text-xl w-48 sm:w-full"
-          onClick={() => {
-            connect();
-          }}
-          style={{ fontFamily: "Bahnschrift" }}
-        >
-          <p>
+        <div>
+          <p
+            className="bg-[#413738] px-6 cursor-not-allowed rounded-full py-2 uppercase text-[#FEE0DF] m-auto  text-xl w-48 sm:w-full"
+            onClick={() => {
+              // connect();
+            }}
+            style={{ fontFamily: "Bahnschrift" }}
+          >
             {!!data?.address
               ? `${formatAddress(data?.address)}`
               : "NOT LIVE YET"}
@@ -534,6 +541,15 @@ const Connect = () => {
         >
           First 666 free - 0.005 eth - max 5 per wallet.
         </p>
+
+        {!!data?.address ? (
+          <p
+            className="uppercase my-4 text-[#FF0000]"
+            style={{ fontSize: "10px" }}
+          >
+            Ensure to connect to Ethereum Mainnet Network
+          </p>
+        ) : null}
       </div>
     </div>
   );
