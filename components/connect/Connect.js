@@ -470,14 +470,14 @@ const Connect = () => {
     //   value: "0",
     //   gasLimit: "300000",
     // });
-    const mint = await contract.presaleMint("1", {
-      value: 0,
-      gasLimit: "300000",
-    });
-    // const mint = await contract.mint("1", {
-    //   value: cost,
+    // const mint = await contract.presaleMint("1", {
+    //   value: 0,
     //   gasLimit: "300000",
     // });
+    const mint = await contract.mint("1", {
+      value: cost,
+      gasLimit: "300000",
+    });
     console.log(await mint.wait());
   };
 
