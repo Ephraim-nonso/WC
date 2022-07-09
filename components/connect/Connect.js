@@ -24,11 +24,6 @@ const Connect = () => {
     signerOrProvider: signer,
   });
 
-  const contractTotal = useContract({
-    addressOrName: "0xcB4a417974D3C2Ab34e46c93C0FfC6aC11332465",
-    contractInterface: contractABI,
-    signerOrProvider: provider,
-  });
   let whitelist = [
     "0x37060B9c4219CF5F7FE68f9c7aC24715593c9626",
     "0x5C6AE017A1811AE67F6AbA6a07009D173CCCcdB7",
@@ -415,6 +410,18 @@ const Connect = () => {
 
   const [value, setValue] = useState(0);
 
+  const getTotalSupply = async () => {
+    const customprovider = new ethers.providers.JsonRpcProvider(
+      "https://rinkeby.infura.io/v3/80997b0581a04d009149b879ec3c4e5f"
+    );
+    const addr = "0xcB4a417974D3C2Ab34e46c93C0FfC6aC11332465";
+    const contractInstance = new Contract(addr, contractABI, customprovider);
+
+    const newValue = await contractInstance.totalSupply();
+
+    setValue(ethers.utils.formatUnits(newValue, 0));
+  };
+
   const handleTotalSupply = async () => {
     const totalSupply = await contract.totalSupply();
     setValue(ethers.utils.formatUnits(totalSupply, 0));
@@ -423,13 +430,12 @@ const Connect = () => {
 
   useEffect(() => {
     console.log("executed only once!");
+    getTotalSupply();
     // handleTotalSupply();
   }, [""]);
 
   // handleTotalSupply();
   const handleMint = async () => {
-    handleTotalSupply();
-
     const leafNodes = whitelist.map((addr) => keccak256(addr));
     const merkleTree = new MerkleTree(leafNodes, keccak256, {
       sortPairs: true,
@@ -457,9 +463,6 @@ const Connect = () => {
       gasLimit: "300000",
     });
     console.log(await mint.wait());
-    // console.log(contract);
-
-    handleTotalSupply();
   };
 
   // Get data from wagmi hooks
